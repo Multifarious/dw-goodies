@@ -13,20 +13,6 @@
     <name>Dropwizard Goodies</name>
     <description>Insubstantial but useful (and reusable) bits of code for use with Dropwizard services.</description>
 
-    <repositories>
-        <repository>
-            <id>multifarious-github-snapshots</id>
-            <name>Multifarious Github Snapshots</name>
-            <url>https://raw.github.com/Multifarious/mvn-repo/master/snapshots/</url>
-            <releases>
-                <enabled>false</enabled>
-            </releases>
-            <snapshots>
-                <enabled>true</enabled>
-            </snapshots>
-        </repository>
-    </repositories>
-
     <dependencies>
         <dependency>
             <groupId>com.yammer.dropwizard</groupId>
@@ -50,6 +36,11 @@
                     <artifactId>maven-jar-plugin</artifactId>
                     <version>2.3.2</version>
                 </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-source-plugin</artifactId>
+                    <version>2.2.1</version>
+                </plugin>
             </plugins>
         </pluginManagement>
         <plugins>
@@ -68,6 +59,19 @@
                     <source>1.7</source>
                     <target>1.7</target>
                 </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-source-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>attach-sources</id>
+                        <phase>verify</phase>
+                        <goals>
+                            <goal>jar-no-fork</goal>
+                        </goals>
+                    </execution>
+                </executions>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
