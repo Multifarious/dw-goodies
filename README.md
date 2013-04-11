@@ -93,3 +93,7 @@ Snapshots are available from the following Maven repository:
 ### Releases
 
 None as yet, but when there are, they will be published via Maven Central.
+
+## License
+
+The license is [BSD 2-clause](http://opensource.org/licenses/BSD-2-Clause).  This information is also present in the `LICENSE` file and in the `pom.xml`.
