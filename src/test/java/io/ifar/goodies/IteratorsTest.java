@@ -46,6 +46,11 @@ public class IteratorsTest {
     }
 
     @Test
+    public void topNReturnsEmptyIteratorWhenOnlyOneItemAvailable() {
+        assertFalse(Iterators.takeOneFromTopN(Lists.newArrayList("foo").iterator(),1).right.hasNext());
+    }
+
+    @Test
     /**
      * This is the basic test of expected behavior
      */
