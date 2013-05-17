@@ -1,8 +1,6 @@
 package io.ifar.goodies;
 
-import org.skife.jdbi.v2.ResultIterator;
-
-import java.lang.AutoCloseable;import java.lang.Exception;import java.lang.Iterable;import java.lang.Override;import java.util.Iterator;
+import java.util.Iterator;
 
 /**
  * Wraps Iterators, providing AutoCloseable and Iterable interfaces.
@@ -10,32 +8,43 @@ import java.lang.AutoCloseable;import java.lang.Exception;import java.lang.Itera
  * Particularly intended for use with JDBI's ResultIterator; failing to exhaust
  * such an iterator will leak a database connection.
  */
-public class AutoCloseableIterator<T> implements Iterator<T>, Iterable<T>, AutoCloseable {
+public class AutoCloseableIterator<T> implements IterableIterator<T>, AutoCloseable {
     private final Iterator<T> wrapped;
     private final AutoCloseable closeHook;
 
+    /**
+     * Wraps a standard Iterator with no-op close behavior.
+     */
     public AutoCloseableIterator(final Iterator<T> wrapped) {
+        this(wrapped,null);
+    }
+
+    /**
+     * Wraps Iterator and invokes provided closeHook when closed. Typical usage:
+     *
+     * <pre>
+     * new AutoClosableIterator(myIterator, new AutoCloseable() {
+     *     &#64;Override
+     *     public void close() throws Exception {
+     *         myIterator.close();
+     *     }
+     * });
+     * </pre>
+     *
+     *
+     * @param wrapped
+     * @param closeHook
+     */
+    public AutoCloseableIterator(final Iterator<T> wrapped, AutoCloseable closeHook) {
         this.wrapped = wrapped;
-        if (wrapped instanceof ResultIterator) {
-            closeHook = new AutoCloseable() {
-                @Override
-                public void close() throws Exception {
-                    ((ResultIterator<T>) wrapped).close();
-                }
-            };
-        } else {
-            closeHook = new AutoCloseable() {
-                @Override
-                public void close() throws Exception {
-                    //do nothing
-                }
-            };
-        }
+        this.closeHook = closeHook;
     }
 
     @Override
     public void close() throws Exception {
-        closeHook.close();
+        if (closeHook != null) {
+            closeHook.close();
+        }
     }
 
     @Override
