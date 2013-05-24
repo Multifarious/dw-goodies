@@ -3,20 +3,20 @@ package io.ifar.goodies;
 /**
  * An immutable 2-tuple.
  */
-public class Pair<S,T> {
-    public final S left;
-    public final T right;
+public class Pair<L,R> extends Tuple {
+    public final L left;
+    public final R right;
 
-    public Pair(S left, T right) {
+    public Pair(L left, R right) {
         this.left = left;
         this.right = right;
     }
 
-    public S getLeft() {
+    public L getLeft() {
         return left;
     }
 
-    public T getRight() {
+    public R getRight() {
         return right;
     }
 
@@ -41,7 +41,13 @@ public class Pair<S,T> {
     }
 
     @Override
-    public String toString() {
-        return String.format("(%s,%s)",left == null ? "<null>" : left.toString(), right == null ? "<null>" : right.toString());
+    public Object[] getValues() {
+        return new Object[]{left,right};
     }
+
+    @Override
+    public int getArity() {
+        return 2;
+    }
+
 }
