@@ -5,7 +5,7 @@ This repository collects odds and ends for Dropwizard services that have proven 
 
 ## Setting Up for the Build Number Command
 
-The `BuildNumber` command requires the following to be additions to the Maven project that is used to build the Dropwizard service in question.
+The `BuildNumber` command requires the following additions to the Maven project that is used to build the Dropwizard service in question.
 
 First, the `<scm>...</scm>` section of the POM should be filled in, e.g.:
 
