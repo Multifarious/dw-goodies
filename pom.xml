@@ -3,11 +3,11 @@
 
     <groupId>io.ifar</groupId>
     <artifactId>dw-goodies</artifactId>
-    <version>0</version>
+    <version>1-SNAPSHOT</version>
     <packaging>jar</packaging>
     <scm>
         <developerConnection>scm:git:git@github.com:Multifarious/dw-goodies.git</developerConnection>
-      <tag>dw-goodies-0</tag>
+      <tag>HEAD</tag>
   </scm>
 
     <name>Dropwizard Goodies</name>
