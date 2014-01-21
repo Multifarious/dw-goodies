@@ -146,7 +146,7 @@
         <repository>
             <id>multifarious-cloudbees-releases</id>
             <layout>default</layout>
-            <url>/Volumes/release</url>
+            <url>file:///Volumes/release</url>
         </repository>
     </distributionManagement>
 </project>
