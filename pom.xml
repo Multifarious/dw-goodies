@@ -3,7 +3,7 @@
 
     <groupId>io.ifar</groupId>
     <artifactId>dw-goodies</artifactId>
-    <version>0</version>
+    <version>1-SNAPSHOT</version>
     <packaging>jar</packaging>
     <scm>
         <developerConnection>scm:git:git@github.com:Multifarious/dw-goodies.git</developerConnection>
