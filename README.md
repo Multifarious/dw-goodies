@@ -1,7 +1,7 @@
 # dw-goodies
 ----
 
-This repository collects odds and ends for Dropwizard services that have proven consistently useful.
+This repository collects odds and ends for [Dropwizard](http://dropwizard.codahale.com/) services that have proven consistently useful.
 
 ## Setting Up for the Build Number Command
 

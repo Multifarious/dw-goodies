@@ -1,10 +1,11 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>io.ifar</groupId>
+    <groupId>io.ifar.dw-goodies</groupId>
     <artifactId>dw-goodies</artifactId>
     <version>1-SNAPSHOT</version>
     <packaging>jar</packaging>
+
     <scm>
         <developerConnection>scm:git:git@github.com:Multifarious/dw-goodies.git</developerConnection>
   </scm>
@@ -57,6 +58,59 @@
                     <artifactId>maven-source-plugin</artifactId>
                     <version>2.2.1</version>
                 </plugin>
+                <plugin>
+                    <groupId>org.codehaus.mojo</groupId>
+                    <artifactId>buildnumber-maven-plugin</artifactId>
+                    <version>1.2</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-install-plugin</artifactId>
+                    <version>2.5.1</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-javadoc-plugin</artifactId>
+                    <version>2.9.1</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-deploy-plugin</artifactId>
+                    <version>2.8</version>
+                </plugin>
+                <plugin>
+                    <artifactId>maven-release-plugin</artifactId>
+                    <version>2.4.2</version>
+                    <configuration>
+                        <providerImplementations>
+                            <git>jgit</git>
+                        </providerImplementations>
+                    </configuration>
+                    <dependencies>
+                        <dependency>
+                            <groupId>org.apache.maven.scm</groupId>
+                            <artifactId>maven-scm-provider-jgit</artifactId>
+                            <version>1.9</version>
+                        </dependency>
+                    </dependencies>
+                </plugin>
+                <plugin>
+                    <artifactId>maven-scm-plugin</artifactId>
+                    <version>1.9</version>
+                    <configuration>
+                        <connectionType>developerConnection</connectionType>
+                        <providerImplementations>
+                            <git>jgit</git>
+                        </providerImplementations>
+                    </configuration>
+                    <dependencies>
+                        <dependency>
+                            <groupId>org.apache.maven.scm</groupId>
+                            <artifactId>maven-scm-provider-jgit</artifactId>
+                            <version>1.9</version>
+                        </dependency>
+                    </dependencies>
+                </plugin>
             </plugins>
         </pluginManagement>
         <plugins>
@@ -65,7 +119,7 @@
                 <artifactId>maven-scm-plugin</artifactId>
                 <version>1.9</version>
                 <configuration>
-                    <connectionType>developerConnection</connectionType>
+
                 </configuration>
             </plugin>
             <plugin>
@@ -85,6 +139,17 @@
                         <phase>verify</phase>
                         <goals>
                             <goal>jar-no-fork</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>attach-javadocs</id>
+                        <goals>
+                            <goal>jar</goal>
                         </goals>
                     </execution>
                 </executions>
@@ -110,7 +175,6 @@
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>buildnumber-maven-plugin</artifactId>
-                <version>1.2</version>
                 <executions>
                     <execution>
                         <phase>validate</phase>
@@ -120,8 +184,10 @@
                     </execution>
                 </executions>
                 <configuration>
-                    <doCheck>false</doCheck> <!-- if true, enforce no local modifications before packaging -->
-                    <doUpdate>false</doUpdate> <!-- if true, push changes upstream after build -->
+                    <doCheck>false</doCheck>
+                    <!-- if true, enforce no local modifications before packaging -->
+                    <doUpdate>false</doUpdate>
+                    <!-- if true, push changes upstream after build -->
                 </configuration>
             </plugin>
         </plugins>
