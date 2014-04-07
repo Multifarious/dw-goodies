@@ -40,10 +40,9 @@ public class Iterators {
      *
      * Useful to obtain somewhat random selection with bounded performance risk when iterator may contain a large number of items.
      *
-     * @param iterator
-     * @param n
-     * @param <T>
-     * @return Pair of selected item (or null if iterator was empty or n <= 0) and new Iterator over the remaining items.
+     * @param iterator the underlying iterator
+     * @param n the number of items.
+     * @return Pair of selected item (or null if iterator was empty or n &lt;= 0) and new Iterator over the remaining items.
      */
     public static <T> Pair<T,IterableIterator<T>> takeOneFromTopN(Iterator<T> iterator, int n) {
         if (!iterator.hasNext() || n < 1) {

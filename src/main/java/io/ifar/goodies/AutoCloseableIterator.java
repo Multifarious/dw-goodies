@@ -16,30 +16,31 @@ public class AutoCloseableIterator<T> implements IterableIterator<T>, AutoClosea
     private final AutoCloseable closeHook;
 
     /**
-     * Returns an AutoCloseableIterator that iterates over all the provided input iterators.
+     * Returns an {@link AutoCloseableIterator} that iterates over all the provided input iterators.
      *
-     * If an Exception is thrown while closing an iterator, the other iterators are closed and the first Exception (only)
-     * is rethrown.
+     * If an {@link Exception} is thrown while closing an iterator, the other iterators are closed and the first
+     * {@link Exception} (only) is rethrown.
      *
      * @see com.google.common.collect.Iterators#concat(java.util.Iterator[])
-     * @param inputs
-     * @param <T>
-     * @return
+     * @param inputs the iterators to concatenate
+     * @param <T> the type of items in the iterators
+     * @return the concatenated iterators
      */
+    @SafeVarargs
     public static <T> AutoCloseableIterator<T> concat(final AutoCloseableIterator<T>... inputs) {
         return concat(ImmutableList.copyOf(inputs));
     }
 
     /**
-     * Returns an AutoCloseableIterator that iterates over all the provided input iterators.
+     * Returns an {@link AutoCloseableIterator} that iterates over all the provided input iterators.
      *
-     * If an Exception is thrown while closing an iterator, the other iterators are closed and the first Exception (only)
-     * is rethrown.
+     * If an {@link Exception} is thrown while closing an iterator, the other iterators are closed and the first
+     * {@link Exception} (only) is rethrown.
      *
      * @see com.google.common.collect.Iterators#concat(java.util.Iterator[])
-     * @param inputs
-     * @param <T>
-     * @return
+     * @param inputs the iterators to concatenate
+     * @param <T> the type of items in the iterator
+     * @return the concatenated iterators
      */
     public static <T> AutoCloseableIterator<T> concat(final Collection<AutoCloseableIterator<T>> inputs) {
         return new AutoCloseableIterator<T>(
@@ -67,6 +68,7 @@ public class AutoCloseableIterator<T> implements IterableIterator<T>, AutoClosea
 
     /**
      * Wraps a standard Iterator with no-op close behavior.
+     * @param wrapped the iterator to be wrapped
      */
     public AutoCloseableIterator(final Iterator<T> wrapped) {
         this(wrapped,null);
@@ -85,8 +87,8 @@ public class AutoCloseableIterator<T> implements IterableIterator<T>, AutoClosea
      * </pre>
      *
      *
-     * @param wrapped
-     * @param closeHook
+     * @param wrapped the iterator to be wrapped
+     * @param closeHook the hook to be invoke
      */
     public AutoCloseableIterator(final Iterator<T> wrapped, AutoCloseable closeHook) {
         this.wrapped = wrapped;
