@@ -2,11 +2,13 @@ package io.ifar.goodies;
 
 import ch.qos.logback.classic.Level;
 import ch.qos.logback.classic.Logger;
-import com.yammer.dropwizard.config.Configuration;
-import com.yammer.dropwizard.config.Environment;
-import com.yammer.dropwizard.json.ObjectMapperFactory;
-import com.yammer.dropwizard.validation.Validator;
+import com.codahale.metrics.MetricRegistry;
+import io.dropwizard.jackson.Jackson;
+import io.dropwizard.setup.Environment;
 import org.slf4j.LoggerFactory;
+
+import javax.security.auth.login.Configuration;
+import javax.validation.Validation;
 
 /**
  *
@@ -20,7 +22,8 @@ public class CliConveniences {
     }
 
     public static Environment fabricateEnvironment(String name, Configuration configuration) {
-        return new Environment(name, configuration, new ObjectMapperFactory(), new Validator());
+        return new Environment(name, Jackson.newObjectMapper(), Validation.buildDefaultValidatorFactory().getValidator(),
+                               new MetricRegistry(),ClassLoader.getSystemClassLoader());
     }
 
 }

@@ -1,8 +1,8 @@
 package io.ifar.goodies;
 
+import com.codahale.metrics.health.HealthCheck;
 import com.google.common.collect.ImmutableMultimap;
-import com.yammer.dropwizard.tasks.Task;
-import com.yammer.metrics.core.HealthCheck;
+import io.dropwizard.servlets.tasks.Task;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -25,7 +25,7 @@ public class PlayDeadSupport {
      * @see #playDeadTask
      * @see #stopPlayingDeadTask
      */
-    public static HealthCheck playDeadHealthCheck = new HealthCheck("playDead") {
+    public static HealthCheck playDeadHealthCheck = new HealthCheck() {
         @Override
         protected Result check() throws Exception {
             if (dead.get()) {
