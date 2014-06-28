@@ -1,9 +1,9 @@
 package io.ifar.goodies;
 
+import com.codahale.metrics.health.HealthCheck;
 import com.google.common.base.Joiner;
 import com.google.common.io.CharStreams;
 import com.google.common.io.InputSupplier;
-import com.yammer.metrics.core.HealthCheck;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -25,7 +25,6 @@ public class Ec2InstanceIdHealthCheck extends HealthCheck {
     private String instanceId;
 
     public Ec2InstanceIdHealthCheck() {
-        super(Ec2InstanceIdHealthCheck.class.getSimpleName());
         URL u;
         try {
             u = new URL(EC2_LOCAL_METADATA_URL);
