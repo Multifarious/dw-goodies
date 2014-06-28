@@ -16,6 +16,8 @@ import java.nio.charset.Charset;
 
 /**
  * Pull the EC2 instance ID into healthcheck property.
+ *
+ * @deprecated This functionality is built into the AWS Java SDK now; see {@code com.amazonaws.util.EC2MetadataUtils}.
  */
 public class Ec2InstanceIdHealthCheck extends HealthCheck {
 

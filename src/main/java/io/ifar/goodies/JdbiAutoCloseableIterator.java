@@ -7,6 +7,8 @@ import org.skife.jdbi.v2.ResultIterator;
  *
  * By keeping this separate from {@link AutoCloseableIterator}, classes in non DropWizard/JDBI projects are safe to reference
  * {@link AutoCloseableIterator}.
+ *
+ * @deprecated Recent versions of jDBI have {@link java.io.Closeable} support.
  */
 public class JdbiAutoCloseableIterator {
     public static <T> AutoCloseableIterator<T> wrap(final ResultIterator<T> wrapped) {
