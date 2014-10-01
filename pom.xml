@@ -13,13 +13,13 @@
 
     <groupId>io.ifar.dw-goodies</groupId>
     <artifactId>dw-goodies</artifactId>
-    <version>3</version>
+    <version>4-SNAPSHOT</version>
     <packaging>jar</packaging>
 
     <scm>
         <url>https://github.com/Multifarious/dw-goodies</url>
         <developerConnection>scm:git:git@github.com:Multifarious/dw-goodies.git</developerConnection>
-        <tag>dw-goodies-3</tag>
+        <tag>HEAD</tag>
     </scm>
 
     <dependencies>
