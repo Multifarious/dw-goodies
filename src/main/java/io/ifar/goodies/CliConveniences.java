@@ -3,11 +3,11 @@ package io.ifar.goodies;
 import ch.qos.logback.classic.Level;
 import ch.qos.logback.classic.Logger;
 import com.codahale.metrics.MetricRegistry;
+import io.dropwizard.Configuration;
 import io.dropwizard.jackson.Jackson;
 import io.dropwizard.setup.Environment;
 import org.slf4j.LoggerFactory;
 
-import javax.security.auth.login.Configuration;
 import javax.validation.Validation;
 
 /**
